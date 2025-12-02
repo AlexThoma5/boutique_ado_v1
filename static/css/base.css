@@ -90,6 +90,13 @@ a.category-badge > span.badge:hover {
     cursor: pointer;
 }
 
+.btn-outline-black:hover,
+.btn-outline-black:focus, 
+.btn-outline-black:active {
+    color: white !important;
+    background: black;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
