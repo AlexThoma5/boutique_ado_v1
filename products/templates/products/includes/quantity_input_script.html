@@ -1,0 +1,59 @@
+<script type="text/javascript">
+// Disable +/- buttons outside 1–99 range
+function handleEnableDisable(itemId) {
+    const input = document.querySelector(`#id_qty_${itemId}`);
+    const currentValue = parseInt(input.value);
+
+    const minusBtn = document.querySelector(`#decrement-qty_${itemId}`);
+    const plusBtn = document.querySelector(`#increment-qty_${itemId}`);
+
+    minusBtn.disabled = currentValue < 2;
+    plusBtn.disabled = currentValue > 98;
+}
+
+// Ensure proper enabling/disabling of all inputs on page load
+const allQtyInputs = document.querySelectorAll('.qty_input');
+
+allQtyInputs.forEach(input => {
+    const itemId = input.dataset.item_id;      // same as jQuery .data('item_id')
+    handleEnableDisable(itemId);
+});
+
+// Check enable/disable every time the input is changed
+allQtyInputs.forEach(input => {
+    input.addEventListener('change', function () {
+        const itemId = this.dataset.item_id;
+        handleEnableDisable(itemId);
+    });
+});
+
+// Increment quantity
+document.querySelectorAll('.increment-qty').forEach(button => {
+    button.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const inputGroup = this.closest('.input-group');
+        const input = inputGroup.querySelector('.qty_input');
+
+        input.value = parseInt(input.value) + 1;
+
+        const itemId = this.dataset.item_id;
+        handleEnableDisable(itemId);
+    });
+});
+
+// Decrement quantity
+document.querySelectorAll('.decrement-qty').forEach(button => {
+    button.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const inputGroup = this.closest('.input-group');
+        const input = inputGroup.querySelector('.qty_input');
+
+        input.value = parseInt(input.value) - 1;
+
+        const itemId = this.dataset.item_id;
+        handleEnableDisable(itemId);
+    });
+});
+</script>
