@@ -84,7 +84,8 @@
             </a>
           </li>
           <li class="list-inline-item">
-            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
+            <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
+              href="{% url 'view_bag' %}">
               <div class="text-center">
                 <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                 <p class="my-0">
@@ -118,7 +119,11 @@
   </header>
 
   {% if messages %}
-  <div class="message-container"></div>
+  <div class="message-container">
+    {% for message in messages %}
+    {% include 'includes/toasts/toast_success.html' %}
+    {% endfor %}
+  </div>
   {% endif %}
 
   {% block page_header %}
@@ -128,6 +133,10 @@
   {% endblock %}
 
   {% block postloadjs %}
+
+  <script type="text/javascript">
+    $('.toast').toast('show');
+  </script>
   {% endblock %}
 
 </body>
