@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'products',
     'bag',
     'checkout',
+    'profiles',
 
     # Optional -- requires install using `django-allauth[socialaccount]`.
     'allauth.socialaccount',
