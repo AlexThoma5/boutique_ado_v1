@@ -1,4 +1,5 @@
 from django import forms
+from .widgets import CustomClearableFileInput
 from .models import Product, Category
 
 
@@ -11,6 +12,8 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product              # Use the Product model
         fields = '__all__'            # Include all model fields
+
+    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         # First, let Django build the default form
